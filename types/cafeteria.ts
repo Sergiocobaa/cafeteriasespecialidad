@@ -1,0 +1,28 @@
+export type TriEstado = "si" | "no" | "desconocido";
+export type RangoPrecio = "€" | "€€" | "€€€";
+
+export type Cafeteria = {
+  nombre: string;
+  slug: string;
+  barrio: string | null;
+  direccion: string | null;
+  ciudad: string;
+  ciudadSlug: string;
+  barrioSlug: string | null;
+  web: string | null;
+  instagram: string | null;
+  instagramUrl: string | null;
+  googleMapsUrl: string | null;
+  tostadorPropio: TriEstado;
+  metodos: string[];
+  veggie: TriEstado;
+  aptoPortatil: TriEstado;
+  wifi: TriEstado;
+  terraza: TriEstado;
+  brunch: TriEstado;
+  paraLlevar: TriEstado;
+  rangoPrecio: RangoPrecio | null;
+  visitada: boolean;
+  miNota: number | null;
+  miComentario: string | null;
+};
