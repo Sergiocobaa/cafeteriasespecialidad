@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100">
+  <!-- Fondo oscuro -->
+  <rect width="100" height="100" fill="#171717"/>
+  <!-- Texto CE en serif y color naranja (similar al de tus botones) -->
+  <text x="50" y="72" font-family="Georgia, serif" font-size="65" font-weight="bold" fill="#ea580c" text-anchor="middle">
+    CE
+  </text>
+</svg>
