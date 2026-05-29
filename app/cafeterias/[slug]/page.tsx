@@ -41,7 +41,7 @@ export default async function CafeteriaPage({ params }: { params: Promise<{ slug
           <Link href="/" className="inline-block mb-8 text-sm font-bold uppercase tracking-widest text-muted hover:text-accent border-b-2 border-transparent hover:border-accent transition-colors">
             ← Volver al mapa
           </Link>
-          <h1 className="text-5xl md:text-7xl lg:text-[6rem] font-serif font-black uppercase tracking-tighter text-foreground mb-4 leading-none">
+          <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[6rem] font-serif font-black uppercase tracking-tighter text-foreground mb-4 leading-none break-words">
             {cafe.nombre}
           </h1>
           <p className="text-xl md:text-2xl font-bold uppercase tracking-widest text-muted mb-8 border-l-4 border-accent pl-4">

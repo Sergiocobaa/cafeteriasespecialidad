@@ -10,7 +10,7 @@ export default async function Home() {
     <main className="flex-1 flex flex-col">
       {/* Editorial Title Section */}
       <section className="px-4 sm:px-6 py-12 md:py-20 border-b-4 border-border flex flex-col">
-        <h1 className="text-5xl md:text-7xl lg:text-[8rem] font-serif font-black leading-none uppercase tracking-tighter text-foreground mb-6">
+        <h1 className="text-4xl sm:text-5xl md:text-7xl lg:text-[8rem] font-serif font-black leading-none uppercase tracking-tighter text-foreground mb-6 break-words">
           CAFETERÍAS <br/> DE ESPECIALIDAD.
         </h1>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 max-w-7xl">

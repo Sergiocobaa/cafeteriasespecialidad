@@ -1,15 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #0d0a0b;      /* Fondo oscuro / negro */
-  --foreground: #f8f7f5;      /* Crema / texto alto contraste */
-  --muted: #8b807a;           /* Gris pardo */
-  --border: #2a2421;          /* Negro sólido/gris oscuro para las líneas */
+  --background: #fdfbf7;      /* Crema tipo papel reciclado */
+  --foreground: #1c1a17;      /* Casi negro / tiza */
+  --muted: #4a453f;           /* Gris pardo */
+  --border: #1c1a17;          /* Negro sólido para las líneas */
   
-  --accent: #d35400;          /* Naranja oxidado / acentos naranjas */
+  --accent: #d35400;          /* Naranja oxidado */
   --accent-hover: #e67e22;
   
-  --card: #141112;            /* Fondo de tarjeta ligeramente más claro que el fondo */
+  --card: #ffffff;
 }
 
 @theme inline {
