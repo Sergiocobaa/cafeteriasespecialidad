@@ -6,6 +6,15 @@ interface Props {
 }
 
 export default function CafeteriaCard({ cafeteria }: Props) {
+  // Omitir bebidas estándar
+  const ignoredMetodos = ["espresso", "flat white", "latte", "capuccino", "cappuccino", "cortado", "americano", "macchiato"];
+  const metodosDiferenciales = cafeteria.metodos.filter(
+    (m) => !ignoredMetodos.includes(m.toLowerCase().trim())
+  );
+
+  // Ocultar la nota si no hay comentario asociado para evitar ruido visual
+  const showRating = cafeteria.miNota && cafeteria.miComentario && cafeteria.miComentario.trim() !== "";
+
   return (
     <Link 
       href={`/cafeterias/${cafeteria.slug}`}
@@ -22,8 +31,8 @@ export default function CafeteriaCard({ cafeteria }: Props) {
               {cafeteria.barrio ? `${cafeteria.barrio}, ` : ""}{cafeteria.ciudad}
             </p>
           </div>
-          {cafeteria.miNota && (
-            <div className="border-2 border-border bg-accent text-white px-2 py-1 font-bold text-sm transform rotate-3">
+          {showRating && (
+            <div className="border-2 border-border bg-accent text-white px-2 py-1 font-bold text-sm transform rotate-3 shrink-0">
               ★ {cafeteria.miNota}
             </div>
           )}
@@ -35,7 +44,7 @@ export default function CafeteriaCard({ cafeteria }: Props) {
               Tostador
             </span>
           )}
-          {cafeteria.metodos.slice(0, 3).map(metodo => (
+          {metodosDiferenciales.slice(0, 3).map(metodo => (
             <span key={metodo} className="text-[10px] font-sans font-medium uppercase tracking-wider px-2 py-1 border border-border text-muted">
               {metodo}
             </span>

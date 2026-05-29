@@ -7,8 +7,8 @@ import { slugify } from "./slug";
 // F=5 Instagram · G=6 Google Maps URL · H=7 Tostador propio · I=8 Métodos
 // J=9 Veggie · K=10 Apto portátil · L=11 Wifi · M=12 Terraza · N=13 Brunch
 // O=14 Para llevar · P=15 Rango precio · Q=16 Visitada · R=17 Mi nota
-// S=18 Mi comentario · T=19 Fecha visita · U=20 Estado ficha
-const RANGE = "'Cafeterías'!A2:U";
+// S=18 Mi comentario · T=19 Fecha visita · U=20 Estado ficha · V=21 Destacada
+const RANGE = "'Cafeterías'!A2:V";
 
 let cachedPromise: Promise<Cafeteria[]> | null = null;
 
@@ -154,6 +154,7 @@ function parseRow(row: string[]): Cafeteria | null {
     visitada: parseBoolean(get(16)),
     miNota: parseNota(get(17)),
     miComentario: get(18) || null,
+    destacadaSemanal: parseBoolean(get(21)),
   };
 }
 

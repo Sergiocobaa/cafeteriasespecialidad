@@ -27,4 +27,5 @@ export type Cafeteria = {
   miComentario: string | null;
   lat?: number;
   lng?: number;
+  destacadaSemanal: boolean;
 };
