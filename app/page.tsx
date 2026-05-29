@@ -18,7 +18,7 @@ export default async function Home() {
         </h1>
         <div className="flex flex-col md:flex-row justify-between items-start md:items-end gap-6 max-w-7xl">
           <p className="text-xl md:text-2xl font-bold uppercase tracking-widest text-muted max-w-2xl border-l-4 border-accent pl-4">
-            DIRECTORIO INDEPENDIENTE. SÓLO CAFÉ DE ESPECIALIDAD EN CATALUNYA. CON CRITERIO RIGUROSO.
+            El mapa del café de especialidad en Catalunya. Sin algoritmos ni listas pagadas. Solo locales que respetan el producto.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 w-full md:w-auto">
             <Link href="/directorio" className="bg-foreground text-background border-4 border-foreground hover:bg-background hover:text-foreground px-8 py-3 font-black uppercase tracking-wider text-lg retro-shadow hover:retro-shadow-hover hover:-translate-y-1 transition-all text-center">
