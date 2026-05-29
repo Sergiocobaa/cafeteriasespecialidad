@@ -25,4 +25,6 @@ export type Cafeteria = {
   visitada: boolean;
   miNota: number | null;
   miComentario: string | null;
+  lat?: number;
+  lng?: number;
 };

@@ -1,12 +1,15 @@
 @import "tailwindcss";
 
 :root {
-  --background: #ffffff;
-  --foreground: #0f172a; /* slate-900 */
-  --muted: #64748b;       /* slate-500 */
-  --border: #e2e8f0;      /* slate-200 */
-  --accent: #6b4423;      /* coffee brown */
-  --accent-hover: #5a3719;
+  --background: #0d0a0b;      /* Fondo oscuro / negro */
+  --foreground: #f8f7f5;      /* Crema / texto alto contraste */
+  --muted: #8b807a;           /* Gris pardo */
+  --border: #2a2421;          /* Negro sólido/gris oscuro para las líneas */
+  
+  --accent: #d35400;          /* Naranja oxidado / acentos naranjas */
+  --accent-hover: #e67e22;
+  
+  --card: #141112;            /* Fondo de tarjeta ligeramente más claro que el fondo */
 }
 
 @theme inline {
@@ -16,10 +19,27 @@
   --color-border: var(--border);
   --color-accent: var(--accent);
   --color-accent-hover: var(--accent-hover);
+  --color-card: var(--card);
   --font-sans: var(--font-geist-sans);
   --font-mono: var(--font-geist-mono);
+  /* Fallback a fuentes serif del sistema para el toque editorial */
+  --font-serif: ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 }
 
 body {
   font-family: var(--font-sans), system-ui, sans-serif;
+  background-color: var(--background);
+  color: var(--foreground);
+  /* Patrón de puntos muy sutil tipo impresión offset */
+  background-image: radial-gradient(#1c1a17 1px, transparent 0);
+  background-size: 24px 24px;
+}
+
+/* Utilidades brutalistas */
+@utility retro-shadow {
+  box-shadow: 4px 4px 0px var(--border);
+}
+
+@utility retro-shadow-hover {
+  box-shadow: 8px 8px 0px var(--border);
 }

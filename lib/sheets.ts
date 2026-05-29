@@ -8,7 +8,7 @@ import { slugify } from "./slug";
 // J=9 Veggie · K=10 Apto portátil · L=11 Wifi · M=12 Terraza · N=13 Brunch
 // O=14 Para llevar · P=15 Rango precio · Q=16 Visitada · R=17 Mi nota
 // S=18 Mi comentario · T=19 Fecha visita · U=20 Estado ficha
-const RANGE = "A2:U";
+const RANGE = "'Cafeterías'!A2:U";
 
 let cachedPromise: Promise<Cafeteria[]> | null = null;
 
@@ -66,19 +66,52 @@ async function fetchAndParse(): Promise<Cafeteria[]> {
     if (cafe) parsed.push(cafe);
   }
 
-  // Detect slug collisions — they would silently break routing.
-  const slugCounts = new Map<string, string[]>();
+  // Geocodificar las cafeterías automáticamente (Opción B)
   for (const c of parsed) {
-    const names = slugCounts.get(c.slug) ?? [];
-    names.push(c.nombre);
-    slugCounts.set(c.slug, names);
+    if (!c.lat && !c.lng && c.direccion && c.ciudad) {
+      try {
+        const query = `${c.direccion}, ${c.ciudad}, Catalunya, Spain`;
+        const url = `https://nominatim.openstreetmap.org/search?q=${encodeURIComponent(query)}&format=json&limit=1`;
+        
+        // Retardo para respetar la limitación de Nominatim (1 req/sec)
+        await new Promise((resolve) => setTimeout(resolve, 1000));
+        
+        const res = await fetch(url, {
+          headers: { 'User-Agent': 'CafeteriasEspecialidad/1.0 (Directorio Local de prueba)' }
+        });
+        
+        if (res.ok) {
+          const data = await res.json();
+          if (data && data.length > 0) {
+            c.lat = parseFloat(data[0].lat);
+            c.lng = parseFloat(data[0].lon);
+          }
+        }
+      } catch (err) {
+        console.warn(`No se pudo geocodificar ${c.nombre}:`, err);
+      }
+    }
   }
-  const collisions = [...slugCounts.entries()].filter(([, names]) => names.length > 1);
-  if (collisions.length > 0) {
-    const detail = collisions
-      .map(([slug, names]) => `  ${slug}: ${names.join(" / ")}`)
-      .join("\n");
-    throw new Error(`Duplicate cafe slugs detected — rename to disambiguate:\n${detail}`);
+
+  // Auto-resolver colisiones de slugs añadiendo el barrio o un número
+  const seenSlugs = new Set<string>();
+  for (const c of parsed) {
+    let finalSlug = c.slug;
+    let counter = 2;
+    
+    // Si el slug ya existe, intentamos añadir el barrio primero para mejor SEO
+    if (seenSlugs.has(finalSlug) && c.barrio) {
+      finalSlug = `${c.slug}-${c.barrioSlug}`;
+    }
+    
+    // Si aún así existe (mismo nombre en el mismo barrio, o sin barrio), añadimos números
+    while (seenSlugs.has(finalSlug)) {
+      finalSlug = `${c.slug}-${counter}`;
+      counter++;
+    }
+    
+    c.slug = finalSlug;
+    seenSlugs.add(finalSlug);
   }
 
   return parsed;
