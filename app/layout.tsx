@@ -3,6 +3,7 @@ import { GeistSans } from "geist/font/sans";
 import { GeistMono } from "geist/font/mono";
 import "./globals.css";
 import Header from "@/components/Header";
+import Footer from "@/components/Footer";
 
 const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || "http://localhost:3000";
 
@@ -59,6 +60,7 @@ export default function RootLayout({
         <div className="flex-grow flex flex-col">
           {children}
         </div>
+        <Footer />
       </body>
     </html>
   );
